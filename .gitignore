@@ -1,3 +1,6 @@
+# git token
+*.token
+
 # Compiled class file
 *.class
 
