@@ -1,0 +1,1 @@
+/home/emilshteinberg/Документы/ООП/lab1/build/classes/kotlin/main/MainKt.class
