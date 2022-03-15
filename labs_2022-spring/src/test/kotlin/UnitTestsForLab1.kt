@@ -7,8 +7,7 @@ import lab1.address.*
 class Lab1UnitTests {
 
     @Test
-    fun `Parse addresses pass`()
-    {
+    fun `Parse addresses pass`() {
         val stringAddresses: String = """
             1, Archangelsk, Lenin st., 23
             2, Boxitogorsk, Stalin alley, 53
@@ -19,8 +18,7 @@ class Lab1UnitTests {
     }
 
     @Test
-    fun `Parse addresses fail`()
-    {
+    fun `Parse addresses fail`() {
         val stringAddress: String = """
             1, Archangelsk, Lenin st., 23
             2, Boxitogorsk, Stalin alley, 53
