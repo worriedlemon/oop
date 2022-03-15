@@ -1,8 +1,13 @@
 import lab1.address.*
-import lab1.readMultiline.readMultiline
 
 fun main() {
-    val addresses = parseAddresses(readMultiline())
+    val addressesString = """
+        188480, Kingisepp, Krikkovskoye roadway, 24
+        920721, Los Angeles, Sunset Boulevard, 75
+        168512, Moscow, New Arbat, 211
+        151716, Saint-Petersburg, Klinskiy alley, 19
+    """.trimIndent()
+    val addresses = parseAddresses(addressesString)
 
     if (addresses.isEmpty()) return
 
