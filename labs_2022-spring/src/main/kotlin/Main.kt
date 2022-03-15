@@ -4,6 +4,8 @@ import lab1.readMultiline.readMultiline
 fun main() {
     val addresses = parseAddresses(readMultiline())
 
+    if (addresses.isEmpty()) return
+
     println("Found cities are:")
     addresses.map { it.city }.forEach { println(it) }
     println("\nFiltered by index < 200000")

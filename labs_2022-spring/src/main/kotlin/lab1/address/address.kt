@@ -1,5 +1,6 @@
 package lab1.address
 
+// Class which represents the address by such properties as [index], [city], [street] and [house]
 class Address(
     var index: Int,
     var city: String,
@@ -11,6 +12,7 @@ class Address(
     }
 }
 
+// Function for parsing a [String] into list of addresses
 fun parseAddresses(addresses: String): List<Address> {
     val addressesList: MutableList<Address> = emptyList<Address>().toMutableList()
     val addressesInString: List<String> = addresses.split('\n')
