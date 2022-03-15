@@ -14,10 +14,10 @@ class Address(
 
 // Function for parsing a [String] into list of addresses
 fun parseAddresses(addresses: String): List<Address> {
-    val addressesList: MutableList<Address> = emptyList<Address>().toMutableList()
+    val addressesList: MutableList<Address> = mutableListOf()
     val addressesInString: List<String> = addresses.split('\n')
-    for (s in addressesInString) {
-        val splitAddresses: Array<String> = s.split(',').toTypedArray()
+    for (subAddress in addressesInString) {
+        val splitAddresses: Array<String> = subAddress.split(',').toTypedArray()
         if (splitAddresses.size != 4) throw ArrayIndexOutOfBoundsException("Arguments count it wrong")
         addressesList.add(
             Address(
