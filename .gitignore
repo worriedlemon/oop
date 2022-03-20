@@ -1,3 +1,6 @@
+# Kotlin binary files
+**/build/
+
 # Compiled class file
 *.class
 
