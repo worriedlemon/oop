@@ -5,29 +5,29 @@
 *.class
 
 # User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+*/.idea/**/workspace.xml
+*/.idea/**/tasks.xml
+*/.idea/**/usage.statistics.xml
+*/.idea/**/dictionaries
+*/.idea/**/shelf
 
-.idea/**/aws.xml
+*/.idea/**/aws.xml
 
-.idea/**/contentModel.xml
+*/.idea/**/contentModel.xml
 
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
+*/.idea/**/dataSources/
+*/.idea/**/dataSources.ids
+*/.idea/**/dataSources.local.xml
+*/.idea/**/sqlDataSources.xml
+*/.idea/**/dynamic.xml
+*/.idea/**/uiDesigner.xml
+*/.idea/**/dbnavigator.xml
 
 # Gradle
-.gradle
-.idea/**/gradle.xml
-.idea/**/libraries
-gradle-app.setting
+**/.gradle
+*/.idea/**/gradle.xml
+*/.idea/**/libraries
+**/gradle-app.setting
 !gradle-wrapper.jar
 !gradle-wrapper.properties
 .gradletasknamecache
@@ -36,29 +36,29 @@ gradle-app.setting
 *.iws
 
 # IntelliJ
-out/
+**/out/
 
 # Plugins
-.idea_modules/
-atlassian-ide-plugin.xml
-.idea/**/mongoSettings.xml
-.idea/replstate.xml
-.idea/sonarlint/
-com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
-.idea/httpRequests
-.idea/caches/build_file_checksums.ser
-.idea/**/sonarlint/
-.idea/**/sonarIssues.xml
-.idea/**/markdown-navigator.xml
-.idea/**/markdown-navigator-enh.xml
-.idea/**/markdown-navigator/
-.idea/codestream.xml
+*/.idea_modules/
+**/atlassian-ide-plugin.xml
+*/.idea/**/mongoSettings.xml
+*/.idea/replstate.xml
+*/.idea/sonarlint/
+**/com_crashlytics_export_strings.xml
+**/crashlytics.properties
+**/crashlytics-build.properties
+**/fabric.properties
+*/.idea/httpRequests
+*/.idea/caches/build_file_checksums.ser
+*/.idea/**/sonarlint/
+*/.idea/**/sonarIssues.xml
+*/.idea/**/markdown-navigator.xml
+*/.idea/**/markdown-navigator-enh.xml
+*/.idea/**/markdown-navigator/
+*/.idea/codestream.xml
 
 # Cache file creation bug
-.idea/$CACHE_FILE$
+*/.idea/$CACHE_FILE$
 
 # Log file
 *.log
@@ -67,7 +67,7 @@ fabric.properties
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+*.mtj.tmp/
 
 # Package Files #
 *.jar
@@ -79,7 +79,7 @@ fabric.properties
 *.rar
 
 # Test Reports #
-*/build/reports/*
+**/build/reports/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
