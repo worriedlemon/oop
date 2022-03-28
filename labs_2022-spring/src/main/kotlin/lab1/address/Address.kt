@@ -1,13 +1,13 @@
 package lab1.address
 
 // Class which represents the address by such properties as [index], [city], [street] and [house]
-class Address(
-    var index: Int,
-    var city: String,
-    var street: String,
-    var house: Int
+data class Address(
+    val index: Int,
+    val city: String,
+    val street: String,
+    val house: Int
 ) {
-    fun full(): String {
+    override fun toString() : String {
         return "$index, $city, $street, $house"
     }
 }

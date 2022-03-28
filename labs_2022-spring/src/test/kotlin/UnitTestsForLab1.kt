@@ -33,6 +33,9 @@ class Lab1UnitTests {
     @Test
     fun `Get full address`() {
         val address = parseAddresses("123456, Saint-Petersburg, Basseynaya st., 12")
-        assertEquals(address[0].full(), "123456, Saint-Petersburg, Basseynaya st., 12")
+        assertEquals(
+            address,
+            listOf(Address(123456, "Saint-Petersburg", "Basseynaya st.", 12))
+        )
     }
 }

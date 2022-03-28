@@ -14,20 +14,20 @@ fun main() {
     println("Found cities are:")
     addresses.map { it.city }.forEach { println(it) }
     println("\nFiltered by index < 200000")
-    addresses.filter { it.index < 200000 }.forEach { println(it.full()) }
+    addresses.filter { it.index < 200000 }.forEach { println(it.toString()) }
 
     with(addresses) {
         println(
             "\nAddress with the largest index: "
-                    + maxByOrNull { it.index }!!.full()
+                    + maxByOrNull { it.index }!!.toString()
                     + "\nAddress with the shortest index: "
-                    + minByOrNull { it.index }!!.full()
+                    + minByOrNull { it.index }!!.toString()
         )
         println(
             "\nAddress with the longest street name: "
-                    + maxByOrNull { it.street.length }!!.full()
+                    + maxByOrNull { it.street.length }!!.toString()
                     + "\nAddress with the shortest street name: "
-                    + minByOrNull { it.street.length }!!.full()
+                    + minByOrNull { it.street.length }!!.toString()
         )
     }
 }
