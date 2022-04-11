@@ -7,32 +7,17 @@ data class ShapeCollector(
         _shapes.add(shape)
     }
 
-    fun findShapeWithMinArea(): ColoredShape2D {
-        if (_shapes.isEmpty()) error("There are no shapes yet")
-
-        var foundShape: ColoredShape2D = _shapes[0]
-        for (i in 1 until _shapes.size) {
-            if (foundShape.calcArea() > _shapes[i].calcArea()) {
-                foundShape = _shapes[i]
-            }
-        }
-        return foundShape
+    fun findShapeWithMinArea(): ColoredShape2D? {
+        return _shapes.minByOrNull { it.calcArea() }
     }
 
-    fun findShapeWithMaxArea(): ColoredShape2D {
-        if (_shapes.isEmpty()) error("There are no shapes yet")
-
-        var foundShape: ColoredShape2D = _shapes[0]
-        for (i in 1 until _shapes.size) {
-            if (foundShape.calcArea() < _shapes[i].calcArea()) {
-                foundShape = _shapes[i]
-            }
-        }
-        return foundShape
+    fun findShapeWithMaxArea(): ColoredShape2D? {
+        return _shapes.maxByOrNull { it.calcArea() }
     }
 
     fun getAreasSum(): Double {
         if (_shapes.isEmpty()) error("There are no shapes yet")
+
         var result = 0.0;
         _shapes.forEach {
             result += it.calcArea()
