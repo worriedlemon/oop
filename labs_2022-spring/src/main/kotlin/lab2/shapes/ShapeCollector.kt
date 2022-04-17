@@ -18,11 +18,7 @@ data class ShapeCollector(
     fun getAreasSum(): Double {
         if (_shapes.isEmpty()) error("There are no shapes yet")
 
-        var result = 0.0;
-        _shapes.forEach {
-            result += it.calcArea()
-        }
-        return result
+        return _shapes.sumOf { it.calcArea() }
     }
 
     fun findShapesWithBorderColor(borderColor: Color): List<ColoredShape2D> {
@@ -33,7 +29,7 @@ data class ShapeCollector(
         return _shapes.filter { it.fillColor == fillColor }
     }
 
-    fun getShapes(): MutableList<ColoredShape2D> = _shapes
+    fun getShapes(): List<ColoredShape2D> = _shapes
 
     fun getShapesCount(): Int = _shapes.size
 
