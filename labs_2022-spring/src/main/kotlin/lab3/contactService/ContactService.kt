@@ -22,6 +22,9 @@ data class Person(
     }
 }
 
+fun String.toPerson(): Person {
+    return Person(this)
+}
 
 enum class PhoneType {
     Home, Office, Mobile
@@ -48,12 +51,12 @@ interface ContactService {
     fun getAllPersons(): List<Person>
     fun getAllContacts(): Map<Person, List<Contact>>
 
-    fun findPersonsByFirstNamePart(name: String): List<Person>
-    fun findPersonsByLastNamePart(surname: String): List<Person>
-    fun findPersonsByNameParts(name: String, surname: String): List<Person>
+    fun findPeopleByFirstNamePattern(name: String): List<Person>
+    fun findPeopleByLastNamePattern(surname: String): List<Person>
+    fun findPeopleByNamePatterns(name: String, surname: String): List<Person>
 }
 
-object DataBase : ContactService {
+class DataBase : ContactService {
     private val people = mutableMapOf<Person, MutableList<Contact>>()
 
     private fun checkPerson(person: Person) {
@@ -132,7 +135,7 @@ object DataBase : ContactService {
         return people.toMap()
     }
 
-    override fun findPersonsByFirstNamePart(name: String): List<Person> {
+    override fun findPeopleByFirstNamePattern(name: String): List<Person> {
         return people.filter {
             it.key
                 .firstName
@@ -140,7 +143,7 @@ object DataBase : ContactService {
         }.keys.toList()
     }
 
-    override fun findPersonsByLastNamePart(surname: String): List<Person> {
+    override fun findPeopleByLastNamePattern(surname: String): List<Person> {
         return people.filter {
             it.key
                 .lastName
@@ -148,7 +151,7 @@ object DataBase : ContactService {
         }.keys.toList()
     }
 
-    override fun findPersonsByNameParts(name: String, surname: String): List<Person> {
+    override fun findPeopleByNamePatterns(name: String, surname: String): List<Person> {
         return people.filter {
             it.key
                 .firstName
