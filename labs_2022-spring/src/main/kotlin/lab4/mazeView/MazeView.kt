@@ -8,7 +8,7 @@ import java.awt.Image.SCALE_SMOOTH
 import javax.swing.*
 import kotlin.system.exitProcess
 
-const val TILE_SIZE = 32
+const val TILE_SIZE = 24
 const val RES_X = TILE_SIZE * CELLS_X_FULL
 const val RES_Y = TILE_SIZE * CELLS_Y_FULL
 
@@ -56,7 +56,7 @@ class MazeView : JFrame("Maze Game"), ModelChangeListener {
     private var mazeModel: MazeModel
     private val textures = loadSprites()
     private lateinit var player: JComponent
-    private lateinit var controller: MazeControl
+    private var controller: MazeControl? = null
 
     init {
         mazeModel = MazeModel()
@@ -141,8 +141,8 @@ class MazeView : JFrame("Maze Game"), ModelChangeListener {
         rootPane.contentPane.add(createUIField(), BorderLayout.CENTER)
         revalidate()
         repaint()
+        removeKeyListener(controller)
         controller = MazeControl(this, mazeModel)
-        controller.start()
     }
 
     private fun updatePlayerPosition() {

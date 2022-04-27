@@ -1,10 +1,11 @@
 package lab4.mazeModel
 
 import java.lang.Math.random
+import kotlin.math.roundToInt
 
 // Sizes of maze should be odd
-const val CELLS_X = 41
-const val CELLS_Y = 21
+const val CELLS_X = 71
+const val CELLS_Y = 37
 
 const val CELLS_X_FULL = (CELLS_X + 2)
 const val CELLS_Y_FULL = (CELLS_Y + 2)
@@ -36,7 +37,7 @@ data class Coordinates(
 
 class MazeModel {
     val currentPosition = Coordinates(0, 0)
-    val finishPosition = Coordinates(CELLS_X - 1, 0)
+    val finishPosition = Coordinates(0, 0)
     var state: ModelState = ModelState.IDLE
         private set
 
@@ -94,7 +95,7 @@ class MazeModel {
                     } else hasEntry = false
                 }
 
-                if (random() < 0.7) {
+                if (random() < 0.8) {
                     maze[row + 1][column] = '#'
                 } else hasEntry = true
             }
@@ -117,31 +118,14 @@ class MazeModel {
             }
         }
 
-        for (column in 0 until CELLS_X - 2 step 2) {
-            if (auxRow[column] != auxRow[column + 2]) auxRow[column + 1] = 0
-            if (auxRow[column + 1] != -1) maze[CELLS_Y - 1][column + 1] = ' '
-        }
+        currentPosition.y = CELLS_Y - 1
+        currentPosition.x = (random() * (CELLS_X - 1)).roundToInt()
 
-        for (row in 0 until CELLS_Y) {
-            if (random() < 0.5 && maze[row][0] != '#') {
-                currentPosition.y = row
-                currentPosition.x = 0
-                break
-            }
-            else {
-                currentPosition.y = 0
-                currentPosition.x = 0
-            }
-        }
-
-        for (row in 0 until CELLS_Y) {
-            if (random() < 0.5 && maze[row][CELLS_X - 1] != '#') {
-                finishPosition.y = row
-                break
-            }
-            else {
-                finishPosition.y = 0
-            }
+        finishPosition.y = 0
+        finishPosition.x = (random() * (CELLS_X - 1)).roundToInt()
+        if (maze[0][finishPosition.x] == '#')
+        {
+            finishPosition.x += if (finishPosition.x == CELLS_X - 1) -1 else 1
         }
     }
 

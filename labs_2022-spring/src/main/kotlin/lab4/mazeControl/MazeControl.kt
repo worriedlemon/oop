@@ -6,20 +6,20 @@ import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 
 class MazeControl(
-    private val view: MazeView,
+    view: MazeView,
     private val model: MazeModel
 ) : KeyListener {
     private var direction = MoveDirection.IDLE
+
+    init {
+        view.addKeyListener(this)
+    }
 
     enum class Controls(val keys: Set<Int>) {
         GO_LEFT(setOf(KeyEvent.VK_LEFT, KeyEvent.VK_A)),
         GO_RIGHT(setOf(KeyEvent.VK_RIGHT, KeyEvent.VK_D)),
         GO_DOWN(setOf(KeyEvent.VK_DOWN, KeyEvent.VK_S)),
         GO_UP(setOf(KeyEvent.VK_UP, KeyEvent.VK_W)),
-    }
-
-    fun start() {
-        view.addKeyListener(this)
     }
 
     override fun keyTyped(e: KeyEvent?) {}
