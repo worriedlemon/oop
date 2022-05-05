@@ -4,8 +4,8 @@ import java.lang.Math.random
 import kotlin.math.roundToInt
 
 // Sizes of maze should be odd
-const val CELLS_X = 71
-const val CELLS_Y = 37
+const val CELLS_X = 101
+const val CELLS_Y = 55
 
 const val CELLS_X_FULL = (CELLS_X + 2)
 const val CELLS_Y_FULL = (CELLS_Y + 2)
