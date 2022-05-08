@@ -11,7 +11,7 @@ fun main() {
     shapeCollector.add(Square(Color.YELLOW, Color.MAGENTA, 3.0))
 
     println("Input the full desired path to a JSON file:")
-    val path = readln()
+    val path = ShapeCollectorIOManager.readPath()
     val jsonResult = ShapeCollectorIOManager.writeJsonFile(path, shapeCollector)
 
     println("Result is:\n$jsonResult\n")

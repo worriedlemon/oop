@@ -5,6 +5,8 @@ import lab6.shapes.ShapeCollector
 import java.io.*
 
 object ShapeCollectorIOManager {
+    private const val STANDART_PATH = "./src/main/resources/lab6/shapeCollector.json"
+
     fun readJsonFile(path: String): ShapeCollector? {
         return try {
             val shapeCollector = ShapeCollectorJsonSerialization
@@ -31,4 +33,6 @@ object ShapeCollectorIOManager {
         }
         return jsonResult
     }
+
+    fun readPath(): String = readln().ifBlank { STANDART_PATH }
 }
