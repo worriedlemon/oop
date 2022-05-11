@@ -23,28 +23,28 @@ class MazeView : JFrame("Maze Game"), ModelChangeListener {
     private fun loadSprites(): Textures {
         return Textures(
             ImageIcon(
-                ImageIcon("src/lab1.main/resources/lab4/bricks.png").image.getScaledInstance(
+                ImageIcon("src/main/resources/lab4/bricks.png").image.getScaledInstance(
                     TILE_SIZE,
                     TILE_SIZE,
                     SCALE_SMOOTH
                 )
             ),
             ImageIcon(
-                ImageIcon("src/lab1.main/resources/lab4/grass.png").image.getScaledInstance(
+                ImageIcon("src/main/resources/lab4/grass.png").image.getScaledInstance(
                     TILE_SIZE,
                     TILE_SIZE,
                     SCALE_SMOOTH
                 )
             ),
             ImageIcon(
-                ImageIcon("src/lab1.main/resources/lab4/steve.png").image.getScaledInstance(
+                ImageIcon("src/main/resources/lab4/steve.png").image.getScaledInstance(
                     TILE_SIZE,
                     TILE_SIZE,
                     SCALE_SMOOTH
                 )
             ),
             ImageIcon(
-                ImageIcon("src/lab1.main/resources/lab4/finish.png").image.getScaledInstance(
+                ImageIcon("src/main/resources/lab4/finish.png").image.getScaledInstance(
                     TILE_SIZE,
                     TILE_SIZE,
                     SCALE_SMOOTH
