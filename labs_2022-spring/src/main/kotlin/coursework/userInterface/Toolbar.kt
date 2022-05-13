@@ -1,0 +1,30 @@
+package coursework.userInterface
+
+import java.awt.Dimension
+import java.awt.GridLayout
+import javax.swing.*
+
+class Toolbar(paintingPanel: MainPanel) : JPanel(GridLayout(1, 6, 5, 5)) {
+    init {
+        preferredSize = Dimension(width, 40)
+        add(JLabel("Brush size:", JLabel.CENTER))
+        add(JSlider(0,1, 10, paintingPanel.brushThickness).apply {
+            addChangeListener {
+                paintingPanel.changeThicknessValue(0, value)
+            }
+        })
+        add(JLabel("Eraser size:", JLabel.CENTER))
+        add(JSlider(0,1, 10, paintingPanel.eraserThickness).apply {
+            addChangeListener {
+                paintingPanel.changeThicknessValue(1, value)
+            }
+        })
+        add(JLabel("Outline size:", JLabel.CENTER))
+        add(JSlider(0,1, 10, paintingPanel.outlineThickness).apply {
+            addChangeListener {
+                paintingPanel.changeThicknessValue(2, value)
+            }
+        })
+
+    }
+}
