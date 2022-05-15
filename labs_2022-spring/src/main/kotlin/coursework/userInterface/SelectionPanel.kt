@@ -30,7 +30,7 @@ class SelectionPanel(private val paintingPanel: MainPanel) : JPanel(GridLayout(5
     }
 
     private fun createOutlineColorChooser(): JButton {
-        return JButton("Outline Color").apply {
+        return JButton("Outline\nColor".toHtml()).apply {
             addActionListener {
                 val chosenColor: Color? = JColorChooser.showDialog(
                     JFrame(),
@@ -43,7 +43,7 @@ class SelectionPanel(private val paintingPanel: MainPanel) : JPanel(GridLayout(5
     }
 
     private fun createFillColorChooser(): JButton {
-        return JButton("Fill Color").apply {
+        return JButton("Fill\nColor".toHtml()).apply {
             addActionListener {
                 val chosenColor: Color? = JColorChooser.showDialog(
                     JFrame(),

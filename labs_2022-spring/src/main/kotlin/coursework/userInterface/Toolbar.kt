@@ -4,7 +4,7 @@ import java.awt.Dimension
 import java.awt.GridLayout
 import javax.swing.*
 
-class Toolbar(paintingPanel: MainPanel) : JPanel(GridLayout(1, 6, 5, 5)) {
+class Toolbar(paintingPanel: MainPanel) : JPanel(GridLayout(1, 0, 5, 0)) {
     init {
         preferredSize = Dimension(width, 40)
         add(JLabel("Brush size:", JLabel.CENTER))
@@ -25,6 +25,10 @@ class Toolbar(paintingPanel: MainPanel) : JPanel(GridLayout(1, 6, 5, 5)) {
                 paintingPanel.changeThicknessValue(2, value)
             }
         })
-
+        add(JCheckBox("Shape fill", false).apply {
+            addChangeListener {
+                paintingPanel.shapesFill = !paintingPanel.shapesFill
+            }
+        })
     }
 }

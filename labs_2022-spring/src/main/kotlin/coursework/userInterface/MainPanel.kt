@@ -1,6 +1,7 @@
 package coursework.userInterface
 
 import coursework.base.*
+import coursework.base.Rectangle
 import java.awt.*
 import java.awt.image.BufferedImage
 import javax.swing.JPanel
@@ -28,8 +29,9 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
             graphics2D.background = value
         }
 
+    var shapesFill = false
+
     init {
-        setSize(1080, 640)
         cursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR)
     }
 
@@ -44,7 +46,10 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
         if (image == null) {
             image = createImage(size.width, size.height)
             graphics2D = (image!!.graphics as Graphics2D).apply {
-                setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
+
+                // Using following for antialiasing:
+                // setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
+
                 background = Color.WHITE
                 clearRect(0, 0, size.width, size.height)
             }
@@ -138,8 +143,24 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
                 } else shape.y
 
                 graphics2D.drawOval(x, y, w, h)
+                if (shapesFill) {
+                    graphics2D.color = fillColor
+                    graphics2D.fillOval(
+                        x, y, w, h)
+                    graphics2D.color = outlineColor
+                }
             }
-            else -> graphics2D.drawPolygon(shape as Polygon)
+            else -> {
+                graphics2D.drawPolygon(shape as Polygon)
+                if (shapesFill && shape is Rectangle) {
+                    graphics2D.color = fillColor
+                    graphics2D.fillPolygon(
+                        if (outlineThickness % 2 == 1) shape.correctFiller()
+                        else shape
+                    )
+                    graphics2D.color = outlineColor
+                }
+            }
         }
         repaint()
     }

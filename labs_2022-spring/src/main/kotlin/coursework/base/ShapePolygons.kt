@@ -21,7 +21,16 @@ class Rectangle(
     intArrayOf(x1, x1, x2, x2),
     intArrayOf(y1, y2, y2, y1),
     4
-), Shape2D
+), Shape2D {
+    fun correctFiller() : Rectangle {
+        return Rectangle(
+            if (x1 < x2) x1 + 1 else x1,
+            if (y1 < y2) y1 + 1 else y1,
+            if (x2 < x1) x2 + 1 else x2,
+            if (y2 < y1) y2 + 1 else y2
+        )
+    }
+}
 
 class Oval(
     override val x1: Int,
