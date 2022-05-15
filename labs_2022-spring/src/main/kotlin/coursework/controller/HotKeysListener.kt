@@ -31,7 +31,7 @@ class HotKeysListener(
                 controlKey = false
             }
             KeyEvent.VK_Z -> if (controlKey) paintingPanel.loadState()
-            KeyEvent.VK_Y -> if (controlKey) paintingPanel.loadState()
+            KeyEvent.VK_Y -> if (controlKey) paintingPanel.reloadState()
         }
     }
 

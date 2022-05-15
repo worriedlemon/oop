@@ -25,6 +25,9 @@ class MainPanelMouseListener(
         // Saving previous state
         paintingPanel.saveState(false)
 
+        // Clearing the buffer of redo layers
+        ProgramModel.redoLayers.clear()
+
         x1 = e.x
         y1 = e.y
 

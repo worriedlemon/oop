@@ -156,7 +156,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
                 eraserThickness
             )
         } else {
-            graphics2D.fillPolygon(Line(x1, y1, x2, y2))
+            graphics2D.drawPolygon(Line(x1, y1, x2, y2))
         }
         graphics2D.paint = outlineColor
         graphics2D.stroke = BasicStroke(outlineThickness.toFloat())
@@ -193,6 +193,8 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
 
     // Function for loading the previous state
     fun loadState(withRemoval: Boolean = true) {
+        ProgramModel.redoLayers.add(saveState(true)!!)
+
         val image: BufferedImage? = try {
             ProgramModel.undoLayers.last()
         } catch (e: NoSuchElementException) {
@@ -202,7 +204,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
         if (image != null) {
             graphics2D.drawImage(image, null, 0, 0)
             if (withRemoval) {
-                ProgramModel.redoLayers.add(ProgramModel.undoLayers.removeLast())
+                ProgramModel.undoLayers.removeLast()
             }
             repaint()
         }
@@ -217,6 +219,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
         }
 
         if (image != null) {
+            ProgramModel.undoLayers.add(saveState(true)!!)
             graphics2D.drawImage(image, null, 0, 0)
             repaint()
         }
