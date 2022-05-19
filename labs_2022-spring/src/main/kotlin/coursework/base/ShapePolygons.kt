@@ -22,7 +22,7 @@ class Rectangle(
     intArrayOf(y1, y2, y2, y1),
     4
 ), Shape2D {
-    fun correctFiller() : Rectangle {
+    fun correctFiller(): Rectangle {
         return Rectangle(
             if (x1 < x2) x1 + 1 else x1,
             if (y1 < y2) y1 + 1 else y1,

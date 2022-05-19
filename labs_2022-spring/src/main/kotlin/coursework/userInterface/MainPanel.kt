@@ -87,7 +87,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
             val x1 = point.x
             val y1 = point.y
             if (x1 + 1 in 0 until size.width - 1 &&
-                y1 in 0 until  size.height - 1 &&
+                y1 in 0 until size.height - 1 &&
                 lastState.getRGB(x1 + 1, y1) == colorToFill &&
                 aux[x1 + 1][y1] != 0
             ) {
@@ -96,7 +96,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
                 aux[x1 + 1][y1] = 0
             }
             if (x1 - 1 in 0 until size.width - 1 &&
-                y1 in 0 until  size.height - 1 &&
+                y1 in 0 until size.height - 1 &&
                 lastState.getRGB(x1 - 1, y1) == colorToFill &&
                 aux[x1 - 1][y1] != 0
             ) {
@@ -105,7 +105,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
                 aux[x1 + 1][y1] = 0
             }
             if (x1 in 0 until size.width - 1 &&
-                y1 + 1 in 0 until  size.height - 1 &&
+                y1 + 1 in 0 until size.height - 1 &&
                 lastState.getRGB(x1, y1 + 1) == colorToFill &&
                 aux[x1][y1 + 1] != 0
             ) {
@@ -114,7 +114,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
                 aux[x1][y1 + 1] = 0
             }
             if (x1 in 0 until size.width - 1 &&
-                y1 - 1 in 0 until  size.height - 1 &&
+                y1 - 1 in 0 until size.height - 1 &&
                 lastState.getRGB(x1, y1 - 1) == colorToFill &&
                 aux[x1][y1 - 1] != 0
             ) {
@@ -145,8 +145,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
                 graphics2D.drawOval(x, y, w, h)
                 if (shapesFill) {
                     graphics2D.color = fillColor
-                    graphics2D.fillOval(
-                        x, y, w, h)
+                    graphics2D.fillOval(x, y, w, h)
                     graphics2D.color = outlineColor
                 }
             }

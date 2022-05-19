@@ -17,8 +17,8 @@ class MainWindow : JFrame("Kotlin JPaint") {
 
     init {
         // Setting up
-        val mainContainer = JPanel().apply{
-            border = BorderFactory.createEmptyBorder(0,5,5,5)
+        val mainContainer = JPanel().apply {
+            border = BorderFactory.createEmptyBorder(0, 5, 5, 5)
             layout = BorderLayout()
         }
         isFocusable = true

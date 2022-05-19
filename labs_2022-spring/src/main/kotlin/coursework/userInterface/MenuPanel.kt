@@ -67,7 +67,7 @@ class MenuPanel(private val paintingPanel: MainPanel) : JMenuBar() {
     }
 
     // Save image to file dialog
-    private fun createSaveDialogWindow() : JDialog {
+    private fun createSaveDialogWindow(): JDialog {
         val dialog = JDialog(JFrame(), "Saving to file")
 
         val filenameField = JTextField("output")
@@ -108,7 +108,7 @@ class MenuPanel(private val paintingPanel: MainPanel) : JMenuBar() {
             setSize(480, 320)
             rootPane.contentPane.add(JPanel().apply {
                 layout = GridBagLayout()
-                border = BorderFactory.createEmptyBorder(0,10,0,10)
+                border = BorderFactory.createEmptyBorder(0, 10, 0, 10)
 
                 val constraints = GridBagConstraints().apply {
                     fill = GridBagConstraints.HORIZONTAL
@@ -187,7 +187,7 @@ class MenuPanel(private val paintingPanel: MainPanel) : JMenuBar() {
     }
 
     // About window
-    private fun createAbout() : JFrame {
+    private fun createAbout(): JFrame {
         return JFrame("Help").apply {
             setSize(360, 224)
             setLocationRelativeTo(null)
@@ -213,7 +213,7 @@ class MenuPanel(private val paintingPanel: MainPanel) : JMenuBar() {
     }
 
     // Help window
-    private fun createHelp() : JFrame {
+    private fun createHelp(): JFrame {
         return JFrame("Help").apply {
             setSize(576, 360)
             setLocationRelativeTo(null)

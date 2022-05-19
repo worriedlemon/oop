@@ -13,7 +13,7 @@ enum class ShapeType {
     NONE, BUCKET, RECTANGLE, OVAL, LINE
 }
 
-fun String.toHtml() : String {
+fun String.toHtml(): String {
     return "<html><center>${this.replace("\n", "<br>")}</center></html>"
 }
 
