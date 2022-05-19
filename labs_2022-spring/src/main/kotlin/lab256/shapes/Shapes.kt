@@ -1,7 +1,10 @@
-package lab5.shapes
+package lab256.shapes
 
 import kotlin.math.sqrt
+import kotlinx.serialization.Serializable
+import lab256.serialization.SquareSerializer
 
+@Serializable
 data class Color(
     val red: Int,
     val green: Int,
@@ -26,11 +29,10 @@ data class Color(
         val GREEN = Color(0, 255, 0, 1.0)
         val BLUE = Color(0, 0, 255, 1.0)
 
-        /* CMY colors
+        // CMY colors
         val CYAN = Color(0, 255, 255, 1.0)
         val MAGENTA = Color(255, 0, 255, 1.0)
         val YELLOW = Color(255, 255, 0, 1.0)
-        */
     }
 
     override fun toString(): String {
@@ -47,6 +49,7 @@ interface ColoredShape2D : Shape2D {
     val fillColor: Color
 }
 
+@Serializable
 class Circle(
     override val borderColor: Color,
     override val fillColor: Color,
@@ -82,6 +85,7 @@ class Circle(
 }
 
 // Geometrically, a square is a special case of a rectangle, so technically it IS a rectangle
+@Serializable(with = SquareSerializer::class)
 class Square(
     override val borderColor: Color,
     override val fillColor: Color,
@@ -112,6 +116,7 @@ class Square(
     }
 }
 
+@Serializable
 open class Rectangle(
     override val borderColor: Color,
     override val fillColor: Color,
@@ -148,6 +153,7 @@ open class Rectangle(
     }
 }
 
+@Serializable
 class Triangle(
     override val borderColor: Color,
     override val fillColor: Color,

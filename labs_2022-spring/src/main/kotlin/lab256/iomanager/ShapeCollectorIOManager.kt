@@ -1,27 +1,28 @@
-package lab6.iomanager
+package lab256.iomanager
 
-import lab6.serialization.ShapeCollectorJsonSerialization
-import lab6.shapes.ShapeCollector
+import lab256.serialization.ShapeCollectorJsonSerialization
+import lab256.shapes.ColoredShape2D
+import lab256.shapes.ShapeCollector
 import java.io.*
 
 object ShapeCollectorIOManager {
     private const val STANDART_PATH = "./src/main/resources/lab6/shapeCollector.json"
 
-    fun readJsonFile(path: String): ShapeCollector? {
+    fun <T : ColoredShape2D> readJsonFile(path: String): ShapeCollector<T>? {
         return try {
             val shapeCollector = ShapeCollectorJsonSerialization
                 .decodeFromString(
                     String(FileInputStream(path).readAllBytes())
                 )
             //println("Done")
-            shapeCollector
+            shapeCollector as ShapeCollector<T>
         } catch (e: IOException) {
             println(e.message)
             null
         }
     }
 
-    fun writeJsonFile(path: String, shapeCollector: ShapeCollector): String {
+    fun <T : ColoredShape2D> writeJsonFile(path: String, shapeCollector: ShapeCollector<T>): String {
         val jsonResult = ShapeCollectorJsonSerialization.encodeToString(shapeCollector)
         try {
             FileOutputStream(path).buffered().use {

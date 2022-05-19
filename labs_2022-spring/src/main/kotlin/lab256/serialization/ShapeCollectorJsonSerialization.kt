@@ -1,10 +1,10 @@
-package lab6.serialization
+package lab256.serialization
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.*
-import lab6.shapes.*
+import lab256.shapes.*
 
 object ShapeCollectorJsonSerialization {
     private val json = Json {
@@ -20,11 +20,11 @@ object ShapeCollectorJsonSerialization {
         }
     }
 
-    fun encodeToString(shapeCollector: ShapeCollector): String {
+    fun encodeToString(shapeCollector: ShapeCollector<out ColoredShape2D>): String {
         return json.encodeToString(shapeCollector)
     }
 
-    fun decodeFromString(string: String): ShapeCollector {
+    fun decodeFromString(string: String): ShapeCollector<out ColoredShape2D> {
         return json.decodeFromString(string)
     }
 }

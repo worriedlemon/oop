@@ -1,7 +1,7 @@
 {
     "shapes": [
         {
-            "type": "lab6.shapes.Rectangle",
+            "type": "lab256.shapes.Rectangle",
             "borderColor": {
                 "red": 0,
                 "green": 0,
@@ -18,7 +18,7 @@
             "side2": 2.0
         },
         {
-            "type": "lab6.shapes.Circle",
+            "type": "lab256.shapes.Circle",
             "borderColor": {
                 "red": 0,
                 "green": 0,

@@ -1,10 +1,10 @@
-package lab6.serialization
+package lab256.serialization
 
 import kotlinx.serialization.*
 import kotlinx.serialization.encoding.*
 import kotlinx.serialization.descriptors.*
-import lab6.shapes.Color
-import lab6.shapes.Square
+import lab256.shapes.Color
+import lab256.shapes.Square
 
 object SquareSerializer : KSerializer<Square> {
     override val descriptor: SerialDescriptor = buildClassSerialDescriptor(Square::class.java.name) {

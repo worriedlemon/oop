@@ -1,9 +1,9 @@
-package lab5
+package lab256
 
-import lab5.shapes.*
+import lab256.iomanager.ShapeCollectorIOManager
+import lab256.shapes.*
 
-fun main() {
-
+private fun lab5() {
     // General collector
     val shapeCollector = ShapeCollector<ColoredShape2D>()
 
@@ -96,17 +96,48 @@ fun main() {
     shapeCollector.findShapesWithFillColor(Color.WHITE).forEach {
         println("$it ")
     }
+}
 
-    val rectangles = shapeCollector.getAllShapesByType<Rectangle>()
-    println("\nThere are ${rectangles.size} rectangles:")
-    rectangles.forEach {
-        println("$it ")
-    }
+private fun lab6() {
+    val shapeCollector = ShapeCollector<ColoredShape2D>()
+    shapeCollector.add(Rectangle(Color.BLACK, Color.WHITE, 2.0, 3.0))
+    shapeCollector.add(Circle(Color.BLUE, Color.GRAY, 1.5))
+    shapeCollector.add(Triangle(Color.RED, Color.BLACK, 2.0, 2.0, 1.0))
+    shapeCollector.add(Square(Color.YELLOW, Color.MAGENTA, 3.0))
 
-    try {
-        println("\nTrying to add an impossible triangle of (1.0, 2.0, 3.0)")
-        shapeCollector.add(Triangle(Color.RED, Color.WHITE, 1.0, 2.0, 3.0))
-    } catch (e: IllegalArgumentException) {
-        println("Error: ${e.message}")
+    println("Input the full desired path to a JSON file:")
+    val path = ShapeCollectorIOManager.readPath()
+    val jsonResult = ShapeCollectorIOManager.writeJsonFile(path, shapeCollector)
+
+    println("Result is:\n$jsonResult\n")
+
+    println("Adding some shapes (triangle and rectangle)...\n")
+    shapeCollector.add(Triangle(Color.CYAN, Color.WHITE, 3.0))
+    shapeCollector.add(Rectangle(Color.GREEN, Color.YELLOW, 4.0, 1.0))
+
+    println("Information read from file \'$path\':")
+    val readCollector = ShapeCollectorIOManager.readJsonFile<ColoredShape2D>(path)
+    println(readCollector)
+
+    println("\nAre these collectors same? ${shapeCollector == readCollector}")
+}
+
+private fun invokeLabByNumber(index: Int) {
+    when (index) {
+        2 -> lab5()
+        5 -> lab5()
+        6 -> lab6()
+        else -> throw IllegalStateException()
     }
+}
+
+fun main() {
+    val index: Int = try {
+        readln().toInt()
+    } catch (e: NumberFormatException) {
+        println(e.message)
+        println("Invoking lab 5")
+        5
+    }
+    invokeLabByNumber(index)
 }

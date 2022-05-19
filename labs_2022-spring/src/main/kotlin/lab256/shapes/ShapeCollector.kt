@@ -1,13 +1,17 @@
-package lab5.shapes
+package lab256.shapes
 
-data class ShapeCollector<out T : ColoredShape2D>(
-    private val _shapes: MutableList<T> = mutableListOf()
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
+
+@Serializable
+data class ShapeCollector<T : ColoredShape2D>(
+    @SerialName("shapes") private var _shapes: MutableList<T> = mutableListOf()
 ) {
-    fun addAll(collection: Collection<@UnsafeVariance T>) {
+    fun addAll(collection: Collection<T>) {
         _shapes.addAll(collection)
     }
 
-    fun addAll(collector: ShapeCollector<@UnsafeVariance T>) {
+    fun addAll(collector: ShapeCollector<out T>) {
         _shapes.addAll(collector.getShapes())
     }
 
@@ -16,7 +20,7 @@ data class ShapeCollector<out T : ColoredShape2D>(
         return ShapeCollector(sortedShapes)
     }
 
-    fun add(shape: @UnsafeVariance T) {
+    fun add(shape: T) {
         _shapes.add(shape)
     }
 
