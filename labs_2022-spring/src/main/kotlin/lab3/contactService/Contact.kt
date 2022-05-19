@@ -5,7 +5,7 @@ sealed class Contact(
 ) {
     data class Phone(
         override val information: String,
-        private val Type: PhoneType
+        private val type: PhoneType
     ) : Contact(information) {
         init {
             require(information.isNotBlank())

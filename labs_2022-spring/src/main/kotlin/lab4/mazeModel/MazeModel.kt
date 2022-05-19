@@ -31,13 +31,17 @@ interface ModelChangeListener {
 }
 
 data class Coordinates(
-    var x: Int,
-    var y: Int
+    val x: Int,
+    val y: Int
 )
 
 class MazeModel {
-    val currentPosition = Coordinates(0, 0)
-    val finishPosition = Coordinates(0, 0)
+    var currentPosition = Coordinates(0, 0)
+        private set
+
+    var finishPosition = Coordinates(0, 0)
+        private set
+
     var state: ModelState = ModelState.IDLE
         private set
 
@@ -118,14 +122,12 @@ class MazeModel {
             }
         }
 
-        currentPosition.y = CELLS_Y - 1
-        currentPosition.x = (random() * (CELLS_X - 1)).roundToInt()
+        currentPosition = Coordinates((random() * (CELLS_X - 1)).roundToInt(), CELLS_Y - 1)
 
-        finishPosition.y = 0
-        finishPosition.x = (random() * (CELLS_X - 1)).roundToInt()
+        finishPosition = Coordinates((random() * (CELLS_X - 1)).roundToInt(), 0)
         if (maze[0][finishPosition.x] == '#')
         {
-            finishPosition.x += if (finishPosition.x == CELLS_X - 1) -1 else 1
+            finishPosition = Coordinates(if (finishPosition.x == CELLS_X - 1) -1 else 1, finishPosition.y)
         }
     }
 
@@ -140,8 +142,7 @@ class MazeModel {
         require(newPosY in 0 until CELLS_Y) { "Out of bounds by Y" }
         require(maze[newPosY][newPosX] != '#') { "Move in wall" }
 
-        currentPosition.x = newPosX
-        currentPosition.y = newPosY
+        currentPosition = Coordinates(newPosX, newPosY)
 
         state = if (checkWin()) ModelState.FINISHED else ModelState.MADE_MOVE
 

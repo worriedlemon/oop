@@ -65,12 +65,12 @@ class DataBase : ContactService {
 
     override fun addContact(person: Person, contact: Contact) {
         checkPerson(person)
-        people[person]!!.add(contact)
+        (people[person] as MutableList<Contact>).add(contact)
     }
 
     override fun removeContact(person: Person, contact: Contact) {
         checkPerson(person)
-        if (!people[person]!!.remove(contact)) error("There is no such [contact] attached to this [person]")
+        if (!(people[person] as MutableList<Contact>).remove(contact)) error("There is no such [contact] attached to this [person]")
     }
 
     override fun addPerson(person: Person) {
@@ -84,47 +84,47 @@ class DataBase : ContactService {
 
     override fun addPhone(person: Person, phone: String, phoneType: PhoneType) {
         checkPerson(person)
-        people[person]!!.add(Contact.Phone(phone, phoneType))
+        (people[person] as MutableList<Contact>).add(Contact.Phone(phone, phoneType))
     }
 
     override fun addEmail(person: Person, email: String) {
         checkPerson(person)
-        people[person]!!.add(Contact.Email(email))
+        (people[person] as MutableList<Contact>).add(Contact.Email(email))
     }
 
     override fun addLink(person: Person, link: String) {
         checkPerson(person)
-        people[person]!!.add(Contact.Link(link))
+        (people[person] as MutableList<Contact>).add(Contact.Link(link))
     }
 
     override fun addAddress(person: Person, address: String) {
         checkPerson(person)
-        people[person]!!.add(Contact.Address(address))
+        (people[person] as MutableList<Contact>).add(Contact.Address(address))
     }
 
     override fun getPersonContacts(person: Person): List<Contact> {
         checkPerson(person)
-        return people[person]!!.toList()
+        return (people[person] as MutableList<Contact>).toList()
     }
 
     override fun getPersonPhones(person: Person): List<Contact.Phone> {
         checkPerson(person)
-        return people[person]!!.filterIsInstance<Contact.Phone>()
+        return (people[person] as MutableList<Contact>).filterIsInstance<Contact.Phone>()
     }
 
     override fun getPersonEmails(person: Person): List<Contact.Email> {
         checkPerson(person)
-        return people[person]!!.filterIsInstance<Contact.Email>()
+        return (people[person] as MutableList<Contact>).filterIsInstance<Contact.Email>()
     }
 
     override fun getPersonLinks(person: Person): List<Contact.Link> {
         checkPerson(person)
-        return people[person]!!.filterIsInstance<Contact.Link>()
+        return (people[person] as MutableList<Contact>).filterIsInstance<Contact.Link>()
     }
 
     override fun getPersonAddresses(person: Person): List<Contact.Address> {
         checkPerson(person)
-        return people[person]!!.filterIsInstance<Contact.Address>()
+        return (people[person] as MutableList<Contact>).filterIsInstance<Contact.Address>()
     }
 
     override fun getAllPersons(): List<Person> {
