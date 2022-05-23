@@ -2,7 +2,7 @@ package coursework.userInterface
 
 import coursework.controller.*
 import coursework.base.ClosingWindowListener
-import coursework.base.FrameFocusListener
+import coursework.base.FocusRequestByMouseClickListener
 import coursework.base.MainWindowFocusListener
 import java.awt.BorderLayout
 import javax.swing.BorderFactory
@@ -29,8 +29,8 @@ class MainWindow : JFrame("Kotlin JPaint") {
 
         // Initializing listeners
         addWindowListener(ClosingWindowListener(this))
-        addFocusListener(FrameFocusListener(this))
         addWindowFocusListener(MainWindowFocusListener(this))
+        addMouseListener(FocusRequestByMouseClickListener(this))
         addKeyListener(keyListener)
         paintingPanel.initializeMouseListeners()
 

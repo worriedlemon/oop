@@ -11,16 +11,19 @@ class SelectionPanel(private val paintingPanel: MainPanel) : JPanel(GridLayout(5
         preferredSize = Dimension(120, height)
         val menu = createShapesMenu()
         add(JButton(ImageIcon("$ICONS_PATH/brush.png")).apply {
+            isFocusable = false
             addActionListener {
                 ProgramModel.shapeType = ShapeType.NONE
             }
         })
         add(JButton(ImageIcon("$ICONS_PATH/bucket.png")).apply {
+            isFocusable = false
             addActionListener {
                 ProgramModel.shapeType = ShapeType.BUCKET
             }
         })
         add(JButton("Shapes").apply {
+            isFocusable = false
             addActionListener {
                 menu.isVisible = true
             }
@@ -31,6 +34,7 @@ class SelectionPanel(private val paintingPanel: MainPanel) : JPanel(GridLayout(5
 
     private fun createOutlineColorChooser(): JButton {
         return JButton("Outline\nColor".toHtml()).apply {
+            isFocusable = false
             addActionListener {
                 val chosenColor: Color? = JColorChooser.showDialog(
                     JFrame(),
@@ -44,6 +48,7 @@ class SelectionPanel(private val paintingPanel: MainPanel) : JPanel(GridLayout(5
 
     private fun createFillColorChooser(): JButton {
         return JButton("Fill\nColor".toHtml()).apply {
+            isFocusable = false
             addActionListener {
                 val chosenColor: Color? = JColorChooser.showDialog(
                     JFrame(),
@@ -63,17 +68,20 @@ class SelectionPanel(private val paintingPanel: MainPanel) : JPanel(GridLayout(5
             layout = GridLayout(1, 3)
             contentPane.add(JButton(ImageIcon("$ICONS_PATH/rect.png")).apply {
                 addActionListener {
+                    isFocusable = false
                     ProgramModel.shapeType = ShapeType.RECTANGLE
                     dialog.isVisible = false
                 }
             })
             contentPane.add(JButton(ImageIcon("$ICONS_PATH/oval.png")).apply {
                 addActionListener {
+                    isFocusable = false
                     ProgramModel.shapeType = ShapeType.OVAL
                     dialog.isVisible = false
                 }
             })
             contentPane.add(JButton(ImageIcon("$ICONS_PATH/line.png")).apply {
+                isFocusable = false
                 addActionListener {
                     ProgramModel.shapeType = ShapeType.LINE
                     dialog.isVisible = false

@@ -38,6 +38,7 @@ class MainPanel(private val mainWindow: MainWindow) : JPanel() {
     // Adding mouse listeners
     fun initializeMouseListeners() {
         addMouseListener(mainWindow.mouseListener)
+        addMouseListener(FocusRequestByMouseClickListener(mainWindow))
         addMouseMotionListener(mainWindow.mouseListener)
     }
 

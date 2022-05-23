@@ -1,10 +1,10 @@
 package coursework.base
 
 import coursework.userInterface.MainWindow
-import java.awt.event.FocusEvent
-import java.awt.event.FocusListener
 import java.awt.event.WindowEvent
 import java.awt.event.WindowFocusListener
+import java.awt.event.MouseAdapter
+import java.awt.event.MouseEvent
 
 /* If window unfocuses because of other window or window component
  * interruption of keyboard listening tend to happen. This listeners
@@ -20,11 +20,10 @@ class MainWindowFocusListener(private val window: MainWindow) : WindowFocusListe
 
 }
 
-class FrameFocusListener(private val window: MainWindow) : FocusListener {
-    override fun focusGained(e: FocusEvent?) {}
-
-    override fun focusLost(e: FocusEvent?) {
+class FocusRequestByMouseClickListener(
+    private val window: MainWindow,
+) : MouseAdapter() {
+    override fun mousePressed(e: MouseEvent?) {
         window.requestFocus()
     }
-
 }
