@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.test.*
 import lab256.iomanager.*
-import lab256.serialization.ShapeCollectorJsonSerialization
+import lab256.serialization.JsonSerialization
 import lab256.shapes.*
 import java.io.FileInputStream
 
@@ -271,7 +271,7 @@ class Lab2UnitTests {
                 Triangle(Color.BLACK, Color.WHITE, 4.0),
                 Circle(Color.BLACK, Color.WHITE, 2.0)
             )
-        assertEquals(ShapeCollector(expectedList), shapeCollector.getSorted(comparingFromMinToMaxRules))
+        assertEquals(expectedList, shapeCollector.getSorted(comparingFromMinToMaxRules))
     }
 
     @Test
@@ -297,7 +297,7 @@ class Lab2UnitTests {
                 Rectangle(Color.BLACK, Color.WHITE, 1.5, 2.0),
                 Square(Color.BLACK, Color.WHITE, 1.0)
             )
-        assertEquals(ShapeCollector(expectedList), shapeCollector.getSorted(comparingFromMaxToMinRules))
+        assertEquals(expectedList, shapeCollector.getSorted(comparingFromMaxToMinRules))
     }
 
     // Unit tests for Laboratory 6
@@ -309,7 +309,7 @@ class Lab2UnitTests {
         shapeCollector.add(Circle(Color.BLACK, Color.WHITE, 2.0))
 
         val expectedResult = String(FileInputStream(ENCODING_TEST_PATH).readAllBytes())
-        assertEquals(expectedResult, ShapeCollectorJsonSerialization.encodeToString(shapeCollector))
+        assertEquals(expectedResult, JsonSerialization.encodeToString(shapeCollector.getShapes()))
     }
 
     @Test
@@ -318,8 +318,8 @@ class Lab2UnitTests {
         shapeCollector.add(Rectangle(Color.BLUE, Color.RED, 1.0, 2.0))
         shapeCollector.add(Circle(Color.BLACK, Color.WHITE, 2.0))
 
-        assertEquals(shapeCollector,
-            ShapeCollectorJsonSerialization.decodeFromString(
+        assertEquals(shapeCollector.getShapes(),
+            JsonSerialization.decodeFromString(
                 String(FileInputStream(ENCODING_TEST_PATH).readAllBytes())
             )
         )
@@ -333,7 +333,7 @@ class Lab2UnitTests {
         shapeCollector.add(Circle(Color.BLACK, Color.WHITE, 2.0))
 
         assertDoesNotThrow {
-            ShapeCollectorIOManager.writeJsonFile(WR_TEST_PATH, shapeCollector)
+            SerializeIO.writeJsonFile(WR_TEST_PATH, shapeCollector.getShapes())
         }
     }
 
@@ -344,6 +344,6 @@ class Lab2UnitTests {
         shapeCollector.add(Rectangle(Color.BLUE, Color.RED, 1.0, 2.0))
         shapeCollector.add(Circle(Color.BLACK, Color.WHITE, 2.0))
 
-        assertEquals(shapeCollector, ShapeCollectorIOManager.readJsonFile(WR_TEST_PATH))
+        assertEquals(shapeCollector.getShapes(), SerializeIO.readJsonFile(WR_TEST_PATH))
     }
 }

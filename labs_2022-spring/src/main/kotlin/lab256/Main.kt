@@ -1,7 +1,8 @@
 package lab256
 
-import lab256.iomanager.ShapeCollectorIOManager
+import lab256.iomanager.SerializeIO
 import lab256.shapes.*
+import java.io.IOException
 
 private fun lab5() {
     // General collector
@@ -66,12 +67,10 @@ private fun lab5() {
 
     println("Here is the sorted shape collection:")
     shapeCollector.getSorted(comparingFromMinToMaxRules)
-        .getShapes()
         .forEach { println("$it ") }
 
     println("\nNow sorting in reverse order (max to min):")
     shapeCollector.getSorted(comparingFromMaxToMinRules)
-        .getShapes()
         .forEach { println("$it ") }
 
     // The rest of Main.kt code was a part of lab2. Output didn't change
@@ -106,8 +105,13 @@ private fun lab6() {
     shapeCollector.add(Square(Color.YELLOW, Color.MAGENTA, 3.0))
 
     println("Input the full desired path to a JSON file:")
-    val path = ShapeCollectorIOManager.readPath()
-    val jsonResult = ShapeCollectorIOManager.writeJsonFile(path, shapeCollector)
+    val path = readln().ifBlank { "./src/main/resources/lab6/shapeCollector.json" }
+    val jsonResult = try {
+        SerializeIO.writeJsonFile(path, shapeCollector.getShapes())
+    } catch (e: IOException) {
+        println(e.message)
+        return
+    }
 
     println("Result is:\n$jsonResult\n")
 
@@ -116,7 +120,7 @@ private fun lab6() {
     shapeCollector.add(Rectangle(Color.GREEN, Color.YELLOW, 4.0, 1.0))
 
     println("Information read from file \'$path\':")
-    val readCollector = ShapeCollectorIOManager.readJsonFile<ColoredShape2D>(path)
+    val readCollector = SerializeIO.readJsonFile<ColoredShape2D>(path)
     println(readCollector)
 
     println("\nAre these collectors same? ${shapeCollector == readCollector}")

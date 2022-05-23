@@ -1,37 +1,35 @@
-{
-    "shapes": [
-        {
-            "type": "lab256.shapes.Rectangle",
-            "borderColor": {
-                "red": 0,
-                "green": 0,
-                "blue": 255,
-                "opacity": 1.0
-            },
-            "fillColor": {
-                "red": 255,
-                "green": 0,
-                "blue": 0,
-                "opacity": 1.0
-            },
-            "side1": 1.0,
-            "side2": 2.0
+[
+    {
+        "type": "lab256.shapes.Rectangle",
+        "borderColor": {
+            "red": 0,
+            "green": 0,
+            "blue": 255,
+            "opacity": 1.0
         },
-        {
-            "type": "lab256.shapes.Circle",
-            "borderColor": {
-                "red": 0,
-                "green": 0,
-                "blue": 0,
-                "opacity": 1.0
-            },
-            "fillColor": {
-                "red": 255,
-                "green": 255,
-                "blue": 255,
-                "opacity": 1.0
-            },
-            "radius": 2.0
-        }
-    ]
-}
+        "fillColor": {
+            "red": 255,
+            "green": 0,
+            "blue": 0,
+            "opacity": 1.0
+        },
+        "side1": 1.0,
+        "side2": 2.0
+    },
+    {
+        "type": "lab256.shapes.Circle",
+        "borderColor": {
+            "red": 0,
+            "green": 0,
+            "blue": 0,
+            "opacity": 1.0
+        },
+        "fillColor": {
+            "red": 255,
+            "green": 255,
+            "blue": 255,
+            "opacity": 1.0
+        },
+        "radius": 2.0
+    }
+]

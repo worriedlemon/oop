@@ -1,11 +1,7 @@
 package lab256.shapes
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.SerialName
-
-@Serializable
 data class ShapeCollector<T : ColoredShape2D>(
-    @SerialName("shapes") private var _shapes: MutableList<T> = mutableListOf()
+    private var _shapes: MutableList<T> = mutableListOf()
 ) {
     fun addAll(collection: Collection<T>) {
         _shapes.addAll(collection)
@@ -15,9 +11,8 @@ data class ShapeCollector<T : ColoredShape2D>(
         _shapes.addAll(collector.getShapes())
     }
 
-    fun getSorted(comparator: Comparator<in T>): ShapeCollector<T> {
-        val sortedShapes = _shapes.sortedWith(comparator).toMutableList()
-        return ShapeCollector(sortedShapes)
+    fun getSorted(comparator: Comparator<in T>): List<T> {
+        return _shapes.sortedWith(comparator)
     }
 
     fun add(shape: T) {
