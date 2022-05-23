@@ -8,7 +8,7 @@ import java.awt.Image.SCALE_SMOOTH
 import javax.swing.*
 import kotlin.system.exitProcess
 
-const val TILE_SIZE = 16
+const val TILE_SIZE = 24
 const val RES_X = TILE_SIZE * CELLS_X_FULL
 const val RES_Y = TILE_SIZE * CELLS_Y_FULL
 
