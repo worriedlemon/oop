@@ -1,6 +1,9 @@
 # Kotlin binary files
 **/build/
 
+# Big resources files
+**/resources/gitignored/
+
 # Compiled class file
 *.class
 

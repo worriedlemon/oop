@@ -14,7 +14,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("com.google.code.gson:gson:2.9.1")
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.6.0")
 }
 
 tasks.test {
