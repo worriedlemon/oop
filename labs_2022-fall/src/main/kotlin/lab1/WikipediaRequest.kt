@@ -1,16 +1,20 @@
 package lab1
 
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import java.awt.Desktop
 import java.net.URI
 import java.net.URLEncoder
-import java.net.http.*
-import com.google.gson.*
-import java.awt.Desktop
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
+import java.nio.charset.Charset
 
 // Class for requesting Wikipedia server for information from a specific search phrase
 class WikipediaRequest(
     private val requestString: String
 ) {
-    private val client = HttpClient.newBuilder().build();
+    private val client = HttpClient.newBuilder().build()
     private val requestLink = "https://ru.wikipedia.org/w/api.php?action=query&list=search&utf8=&format=json&srsearch="
     private val resultLink = "https://ru.wikipedia.org/w/index.php?curid="
 
@@ -23,12 +27,13 @@ class WikipediaRequest(
 
     private fun getResponse(): String {
         val fullRequestLink = requestLink + URLEncoder.encode(
-            "\"$requestString\""
+            "\"$requestString\"",
+            Charset.defaultCharset()
         )
 
         val request = HttpRequest.newBuilder()
             .uri(URI.create(fullRequestLink))
-            .build();
+            .build()
 
         return client.send(request, HttpResponse.BodyHandlers.ofString()).body()
     }
