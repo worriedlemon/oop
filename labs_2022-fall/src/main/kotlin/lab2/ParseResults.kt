@@ -25,9 +25,5 @@ data class ParseResults (
             println("${it.key} - ${it.value} times")
         }
     }
-
-    override fun toString(): String {
-        return "Function parse results is obsolete, use output functions"
-    }
 }
 

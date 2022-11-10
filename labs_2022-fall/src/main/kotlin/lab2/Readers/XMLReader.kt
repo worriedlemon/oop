@@ -30,7 +30,7 @@ class XMLReader : BigFileReader {
             if (houses[key] == null) {
                 houses[key] = 1
             } else {
-                houses.replace(key, houses[key]!! + 1)
+                houses[key] = houses[key]!! + 1
             }
         }
 
