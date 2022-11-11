@@ -7,18 +7,23 @@ import javax.xml.parsers.DocumentBuilderFactory
 
 class XMLReader : BigFileReader {
     override fun readInfoFrom(file: File): ParseResults {
-        val xmlItems = DocumentBuilderFactory
+        val xmlRoot = DocumentBuilderFactory
             .newInstance()
             .newDocumentBuilder()
             .parse(file)
-            .getElementsByTagName("item")
-
-        val itemsCount = xmlItems.length
+            .firstChild
 
         val houses = HashMap<AddressData, Int>()
 
-        for (index in 0 until itemsCount) {
-            val key: AddressData = with(xmlItems.item(index).attributes) {
+        while (xmlRoot.hasChildNodes()) {
+            val child = xmlRoot.firstChild
+
+            if (child.nodeName != "item") {
+                xmlRoot.removeChild(child)
+                continue
+            }
+
+            val key: AddressData = with(child.attributes) {
                 AddressData(
                     getNamedItem("city").textContent,
                     getNamedItem("street").textContent,
@@ -32,6 +37,8 @@ class XMLReader : BigFileReader {
             } else {
                 houses[key] = houses[key]!! + 1
             }
+
+            xmlRoot.removeChild(child)
         }
 
         return ParseResults(houses)

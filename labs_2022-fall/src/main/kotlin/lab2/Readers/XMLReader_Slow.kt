@@ -5,25 +5,20 @@ import lab2.ParseResults
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
 
-class XMLReader2 : BigFileReader {
+class XMLReader_Slow : BigFileReader {
     override fun readInfoFrom(file: File): ParseResults {
-        val xmlRoot = DocumentBuilderFactory
+        val xmlItems = DocumentBuilderFactory
             .newInstance()
             .newDocumentBuilder()
             .parse(file)
-            .firstChild
+            .getElementsByTagName("item")
+
+        val itemsCount = xmlItems.length
 
         val houses = HashMap<AddressData, Int>()
 
-        while (xmlRoot.hasChildNodes()) {
-            val child = xmlRoot.firstChild
-
-            if (child.nodeName != "item") {
-                xmlRoot.removeChild(child)
-                continue
-            }
-
-            val key: AddressData = with(child.attributes) {
+        for (index in 0 until itemsCount) {
+            val key: AddressData = with(xmlItems.item(index).attributes) {
                 AddressData(
                     getNamedItem("city").textContent,
                     getNamedItem("street").textContent,
@@ -37,8 +32,6 @@ class XMLReader2 : BigFileReader {
             } else {
                 houses[key] = houses[key]!! + 1
             }
-
-            xmlRoot.removeChild(child)
         }
 
         return ParseResults(houses)

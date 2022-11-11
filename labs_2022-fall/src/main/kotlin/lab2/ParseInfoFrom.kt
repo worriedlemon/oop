@@ -14,8 +14,7 @@ fun parseInfoFrom(pathToFile: String) {
     } else {
         val fileReader: BigFileReader = when (file.extension) {
             "csv" -> CSVReader()
-            //"xml" -> XMLReader()
-            "xml" -> XMLReader2()
+            "xml" -> XMLReader()
             else -> {
                 println("File extension is not valid: use CSV or XML")
                 return
