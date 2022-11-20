@@ -1,5 +1,0 @@
-https://drive.google.com/drive/folders/1WAj235ic5dGXNsZ3g-Zp5pQXkFGjU0TY
-
-labs_2022-fall/src/main/resources/gitignored/address.csv
-
-labs_2022-fall/src/main/resources/gitignored/address.xml

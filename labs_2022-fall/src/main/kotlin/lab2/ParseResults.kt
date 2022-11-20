@@ -1,6 +1,6 @@
 package lab2
 
-data class ParseResults (
+data class ParseResults(
     val housesData: HashMap<AddressData, Int>
 ) {
     fun outputGroupedByFloors() {

@@ -6,7 +6,7 @@ import lab2.ParseResults
 import java.io.File
 
 class CSVReader : BigFileReader {
-    override fun readInfoFrom(file: File) : ParseResults {
+    override fun readInfoFrom(file: File): ParseResults {
         val houses = HashMap<AddressData, Int>()
 
         csvReader {
