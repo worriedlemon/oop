@@ -16,6 +16,7 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.6.0")
+    implementation("dev.inmo:tgbotapi:4.2.1")
 }
 
 tasks.test {
