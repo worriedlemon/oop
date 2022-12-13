@@ -1,4 +1,4 @@
-package lab2.Readers
+package lab2.readers
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import lab2.AddressData

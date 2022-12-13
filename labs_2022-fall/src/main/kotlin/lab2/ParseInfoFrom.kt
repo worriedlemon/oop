@@ -1,6 +1,6 @@
 package lab2
 
-import lab2.Readers.*
+import lab2.readers.*
 import java.io.File
 import kotlin.system.measureTimeMillis
 

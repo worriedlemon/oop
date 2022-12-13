@@ -1,4 +1,4 @@
-package lab2.Readers
+package lab2.readers
 
 import lab2.AddressData
 import lab2.ParseResults
