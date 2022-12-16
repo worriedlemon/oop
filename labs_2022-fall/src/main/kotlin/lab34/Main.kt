@@ -15,6 +15,7 @@ import java.io.FileInputStream
 import java.io.FileNotFoundException
 
 suspend fun main() {
+
     println("Telegram Bot processor is pre-initializing...\nChoose bot behaviour:\n(1) Build-In behaviour\n(2) SQL behaviour")
 
     val botBehavior: BotBehavior = getBotBehaviour()
@@ -39,7 +40,6 @@ suspend fun main() {
     bot.buildBehaviourWithLongPolling {
         println("Done\n${getMe()}")
 
-        val namedCities = mutableSetOf<String>()
         val rules =
             "Правила просты: ты называешь название города, следом я называю город на последнюю букву (кроме случаев с буквами $EXCLUDED_LETTERS, тогда берется предпоследняя). И так по кругу, пока хватает воображения и знаний."
 
@@ -61,6 +61,7 @@ suspend fun main() {
 
         onCommand("play") {
             BotModes.setMode("PLAY", this, it.chat)
+            botBehavior.clearNamedCities()
         }
 
         onCommand("rules") {
@@ -81,17 +82,16 @@ suspend fun main() {
             if (BotModes.botMode == "PLAY") {
                 if (text.lowercase() == "закончить") {
                     BotModes.setMode("MENU", this, it.chat)
-                    namedCities.clear()
+                    botBehavior.clearNamedCities()
                     lastChar = ' '
                 } else {
-                    println("$lastChar : $text")
                     if (lastChar != ' ' && lastChar != text.first().lowercaseChar() && lastChar !in EXCLUDED_LETTERS) {
                         BotModes.botMessage(
                             this,
                             it.chat,
                             "Твой город должен начинаться на букву '${lastChar.uppercaseChar()}'.\nПопробуй еще раз!"
                         )
-                    } else if (namedCities.contains(text)) {
+                    } else if (!botBehavior.checkCity(text)) {
                         BotModes.botMessage(
                             this,
                             it.chat,
@@ -99,8 +99,8 @@ suspend fun main() {
                         )
                     } else {
                         try {
-                            val chosen = botBehavior.chooseCity(text, namedCities)
-                            namedCities.add(text)
+                            val chosen = botBehavior.chooseCity(text)
+
                             if (chosen == null) {
                                 BotModes.setMode(
                                     "MENU",
@@ -109,10 +109,8 @@ suspend fun main() {
                                     "Не могу вспомнить подходящих городов...\nКажется, ты выиграл!"
                                 )
                             } else {
-                                lastChar = if (chosen.last().lowercaseChar() in EXCLUDED_LETTERS) {
-                                    chosen[chosen.length - 2].lowercaseChar()
-                                } else chosen.last().lowercaseChar()
-                                namedCities.add(chosen)
+                                lastChar = chosen.lastCharExclude()
+                                botBehavior.addCity(chosen)
                                 BotModes.botMessage(
                                     this,
                                     it.chat,
@@ -130,7 +128,10 @@ suspend fun main() {
                 }
             } else {
                 when (text.lowercase()) {
-                    "играть" -> BotModes.setMode("PLAY", this, it.chat)
+                    "играть" -> {
+                        BotModes.setMode("PLAY", this, it.chat)
+                        botBehavior.clearNamedCities()
+                    }
                     "правила" -> BotModes.botMessage(this, it.chat, rules)
                     else -> BotModes.unknownCommandOrText(this, it.chat)
                 }

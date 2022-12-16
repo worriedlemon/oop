@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+    //implementation ("com.microsoft.sqlserver:mssql-jdbc:12.1.0")
+    implementation("com.microsoft.sqlserver:mssql-jdbc:11.2.1.jre18")
     testImplementation(kotlin("test"))
     implementation("com.google.code.gson:gson:2.10")
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.6.0")

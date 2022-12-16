@@ -2,10 +2,11 @@ package lab34.botbehaviors
 
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import io.ktor.server.plugins.*
-import lab34.EXCLUDED_LETTERS
+import lab34.lastCharExclude
 
 class BuildInBehavior : BotBehavior {
-    private val citiesCsvPath = "src/main/resources/BotFiles/cities.csv"
+    private val namedCities = mutableSetOf<String>()
+    private val citiesCsvPath = "labs_2022-fall/src/main/resources/BotFiles/cities.csv"
     private val cities = mutableListOf<String>()
 
     init {
@@ -20,18 +21,26 @@ class BuildInBehavior : BotBehavior {
         println("Working with build-in cities:\n$cities")
     }
 
-    override fun chooseCity(text: String, namedCities: Set<String>): String? {
-        if (text !in cities) throw NotFoundException("No such city in a data-class")
+    override fun chooseCity(text: String): String? {
+        if (!checkCity(text)) throw NotFoundException("No such city in a data-class")
 
-        val lastChar = if (text.last().lowercaseChar() in EXCLUDED_LETTERS) {
-            text[text.length - 2]
-        } else {
-            text.last().lowercaseChar()
-        }
+        addCity(text)
+
+        val lastChar = text.lastCharExclude()
 
         val possibleCities = cities.filter {
-            it.first().lowercaseChar() == lastChar && !namedCities.contains(it)
+            it.first().lowercaseChar() == lastChar && !checkCity(it)
         }
         return if (possibleCities.isEmpty()) null else possibleCities.random()
     }
+
+    override fun addCity(text: String) {
+        namedCities.add(text)
+    }
+
+    override fun clearNamedCities() {
+        namedCities.clear()
+    }
+
+    override fun checkCity(text: String): Boolean = namedCities.contains(text)
 }
