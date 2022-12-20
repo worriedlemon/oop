@@ -22,14 +22,14 @@ class BuildInBehavior : BotBehavior {
     }
 
     override fun chooseCity(text: String): String? {
-        if (!checkCity(text)) throw NotFoundException("No such city in a data-class")
+        if (!cities.contains(text)) throw NotFoundException("No such city in a data-class")
 
         addCity(text)
 
         val lastChar = text.lastCharExclude()
 
         val possibleCities = cities.filter {
-            it.first().lowercaseChar() == lastChar && !checkCity(it)
+            it.first().lowercaseChar() == lastChar && !isAlreadyNamedCity(it)
         }
         return if (possibleCities.isEmpty()) null else possibleCities.random()
     }
@@ -38,9 +38,7 @@ class BuildInBehavior : BotBehavior {
         namedCities.add(text)
     }
 
-    override fun clearNamedCities() {
-        namedCities.clear()
-    }
+    override fun clearNamedCities() = namedCities.clear()
 
-    override fun checkCity(text: String): Boolean = namedCities.contains(text)
+    override fun isAlreadyNamedCity(text: String): Boolean = namedCities.contains(text)
 }

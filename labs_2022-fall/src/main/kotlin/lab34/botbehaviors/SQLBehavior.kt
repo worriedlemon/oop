@@ -1,7 +1,7 @@
 package lab34.botbehaviors
 
 import io.ktor.server.plugins.*
-import lab34.SERVERNAME
+import lab34.SERVER_NAME
 import lab34.lastCharExclude
 import java.sql.Connection
 import java.sql.DriverManager
@@ -13,7 +13,7 @@ class SQLBehavior : BotBehavior {
     init {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
         val connectionUrl =
-            "jdbc:sqlserver://$SERVERNAME:1433;encrypt=true;database=CitiesName;trustServerCertificate=true;"
+            "jdbc:sqlserver://$SERVER_NAME:1433;encrypt=true;database=CitiesName;trustServerCertificate=true;"
         connection = DriverManager.getConnection(connectionUrl, "bot", "citiesbot")
     }
 
@@ -66,7 +66,7 @@ class SQLBehavior : BotBehavior {
         }
     }
 
-    override fun checkCity(text: String): Boolean {
+    override fun isAlreadyNamedCity(text: String): Boolean {
         val results = connection.createStatement().executeQuery(
             """
             select CityName
@@ -74,6 +74,6 @@ class SQLBehavior : BotBehavior {
             where CityName = '$text'
         """.trimIndent()
         )
-        return results.next()
+        return !results.next()
     }
 }

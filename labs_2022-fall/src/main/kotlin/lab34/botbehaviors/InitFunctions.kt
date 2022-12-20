@@ -1,6 +1,4 @@
-package lab34
-
-import lab34.botbehaviors.*
+package lab34.botbehaviors
 
 fun getBotBehaviour(): BotBehavior {
     while (true) {
